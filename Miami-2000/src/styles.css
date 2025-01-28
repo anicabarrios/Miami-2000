@@ -1,0 +1,52 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply font-sans text-primary-700 bg-accent-50;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-primary-800;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300;
+  }
+  
+  .btn-primary {
+    @apply bg-secondary-500 text-white hover:bg-secondary-600;
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent border-2 border-secondary-500 text-secondary-500 hover:bg-secondary-500 hover:text-white;
+  }
+  
+  .container-custom {
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+  }
+  
+  .section {
+    @apply py-12 sm:py-16 lg:py-20;
+  }
+
+  .heading-large {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold;
+  }
+
+  .heading-medium {
+    @apply text-3xl md:text-4xl font-bold;
+  }
+
+  .text-body {
+    @apply text-primary-600;
+  }
+}
