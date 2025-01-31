@@ -1,0 +1,9 @@
+:host {
+    display: block;
+  }
+  
+  /* Form Focus Styles */
+  input:focus, select:focus, textarea:focus {
+    border-color: theme('colors.secondary.500');
+    box-shadow: 0 0 0 2px theme('colors.secondary.500/20');
+  }

@@ -1,0 +1,17 @@
+:host {
+    display: block;
+  }
+  
+  /* Mobile Optimizations */
+  @media (max-width: 768px) {
+    :host {
+      margin-left: -1rem;
+      margin-right: -1rem;
+      border-radius: 0;
+    }
+    
+    .insurance-logos {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }

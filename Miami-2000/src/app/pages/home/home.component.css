@@ -1,0 +1,59 @@
+:host {
+    display: block;
+  }
+  
+  /* Form Focus Styles */
+  input:focus, select:focus, textarea:focus {
+    border-color: theme('colors.secondary.500');
+    box-shadow: 0 0 0 2px theme('colors.secondary.500/20');
+  }
+  
+  /* Section Transition Effects */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Hover Effects */
+  .group:hover .hover-translate {
+    transform: translateY(-5px);
+  }
+  
+  /* Animation Classes */
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  /* Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .container-custom {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+  }
