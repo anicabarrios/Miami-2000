@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
 
@@ -24,9 +24,15 @@ export class GalleryGridComponent {
   @Input() showHeader = true;
   @Input() showViewAllButton = true;
   @Input() viewAllButtonText = 'View Full Gallery';
+  
+  @Output() imageClick = new EventEmitter<GalleryImage>();
+  @Output() viewAllClick = new EventEmitter<void>();
 
-  onViewAllClick() {
-    // Implement view all logic
-    console.log('View all clicked');
+  onImageClick(image: GalleryImage) {
+    this.imageClick.emit(image);
+  }
+
+  onViewAll() {
+    this.viewAllClick.emit();
   }
 }

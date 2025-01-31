@@ -2,6 +2,6 @@
     display: block;
   }
   
-  .modal-open {
+  :host-context(body.modal-open) {
     overflow: hidden;
   }

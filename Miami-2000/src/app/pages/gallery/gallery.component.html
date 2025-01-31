@@ -1,1 +1,78 @@
-<p>gallery works!</p>
+<div class="min-h-screen bg-white">
+    <!-- Header -->
+    <app-header />
+  
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-16 bg-primary-900 overflow-hidden">
+      <!-- Background Effects -->
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/95 via-primary-800/95 to-primary-900/95"></div>
+        <div class="absolute inset-0" style="background-image: url('/assets/images/pattern-grid.png'); background-size: 30px 30px; opacity: 0.05;"></div>
+        <div class="absolute -top-24 right-0 w-96 h-96 bg-secondary-500/10 rounded-full filter blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary-500/10 rounded-full filter blur-3xl"></div>
+      </div>
+  
+      <!-- Content -->
+      <div class="container-custom relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <!-- Section Label -->
+          <div class="flex items-center justify-center gap-2 mb-6">
+            <div class="h-px w-8 bg-secondary-500"></div>
+            <span class="text-secondary-500 font-medium uppercase tracking-wider text-sm">Our Work</span>
+            <div class="h-px w-8 bg-secondary-500"></div>
+          </div>
+  
+          <!-- Title -->
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+           Gallery
+          </h1>
+  
+          <!-- Description -->
+          <p class="text-lg md:text-xl text-primary-200 mx-auto max-w-2xl">
+            Explore our portfolio of exceptional auto body repairs, restorations, and custom work. 
+            Each project showcases our commitment to excellence and attention to detail.
+          </p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Categories Section -->
+    <section class="py-8 bg-accent-50 border-b border-accent-200">
+      <div class="container-custom">
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          @for (category of categories; track category) {
+            <button 
+              (click)="filterByCategory(category)"
+              [class.bg-secondary-500]="selectedCategory === category"
+              [class.text-white]="selectedCategory === category"
+              [class.bg-white]="selectedCategory !== category"
+              [class.text-primary-700]="selectedCategory !== category"
+              class="px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-md">
+              {{ category }}
+            </button>
+          }
+        </div>
+      </div>
+    </section>
+  
+    <!-- Gallery Grid -->
+    <app-gallery-grid
+      [images]="filteredGalleryImages"
+      [showHeader]="false"
+      [showViewAllButton]="false"
+      (imageClick)="openModal($event)"
+    />
+  
+    <!-- Image Modal -->
+    <app-image-modal
+      [isOpen]="isModalOpen"
+      [image]="selectedImage"
+      [hasNext]="hasNextImage"
+      [hasPrevious]="hasPreviousImage"
+      (closeModal)="closeModal()"
+      (navigateImage)="navigateImage($event)"
+    />
+  
+    <!-- Footer -->
+    <app-footer />
+  </div>
