@@ -1,46 +1,57 @@
+<!-- Hero Section -->
 <section class="relative py-32 bg-primary-900 overflow-hidden">
-    <app-header/>
-    
-    <!-- Background Effects -->
-    <div class="absolute inset-0">
-      <div class="absolute inset-0 bg-gradient-to-br from-primary-900/95 via-primary-800/95 to-primary-900/95"></div>
-      <div class="absolute inset-0" 
-           style="background-image: url('/assets/images/pattern-grid.png'); background-size: 30px 30px; opacity: 0.05;">
-      </div>
-      <div class="absolute -top-24 right-0 w-96 h-96 bg-secondary-500/10 rounded-full filter blur-3xl"></div>
-      <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary-500/10 rounded-full filter blur-3xl"></div>
-    </div>
-    
-    <!-- Content -->
-    <div class="container-custom relative z-10">
-      <div class="max-w-3xl mx-auto text-center">
-        <!-- Section Label -->
-        <div class="flex items-center justify-center gap-2 mb-6">
-          <div class="h-px w-8 bg-secondary-500"></div>
-          <span class="text-secondary-500 font-medium uppercase tracking-wider text-sm">Get in Touch</span>
-          <div class="h-px w-8 bg-secondary-500"></div>
-        </div>
-        
-        <!-- Title -->
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-          Let's Start Your Auto Body Repair Journey
-        </h1>
-        
-        <!-- Description -->
-        <p class="text-lg md:text-xl text-primary-200 mx-auto max-w-2xl">
-          Whether you need a repair estimate or have questions about our services, our team is here to help. 
-          Reach out to us today!
-        </p>
-      </div>
-    </div>
-  </section>
-
+  <app-header/>
   
-  <!-- Contact Form Section -->
+  <!-- Background Effects -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-900/95 via-primary-800/95 to-primary-900/95"></div>
+    <div class="absolute inset-0 opacity-[0.02]" 
+         style="background-image: url('/assets/images/pattern-grid.png'); background-size: 30px 30px;"></div>
+    <div class="absolute -top-24 right-0 w-96 h-96 bg-secondary-500/10 rounded-full filter blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary-500/10 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
+  </div>
+  
+  <!-- Content -->
+  <div class="container-custom relative z-10">
+    <div class="max-w-3xl mx-auto text-center">
+      <!-- Section Label -->
+      <div class="flex items-center justify-center gap-2 mb-6" 
+           data-aos="fade-up" 
+           data-aos-duration="1000">
+        <div class="h-px w-8 bg-secondary-500"></div>
+        <span class="text-secondary-500 font-medium uppercase tracking-wider text-sm">Get in Touch</span>
+        <div class="h-px w-8 bg-secondary-500"></div>
+      </div>
+      
+      <!-- Title -->
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
+          data-aos="fade-up" 
+          data-aos-duration="1000"
+          data-aos-delay="100">
+        Let's Start Your Auto Body Repair Journey
+      </h1>
+      
+      <!-- Description -->
+      <p class="text-lg md:text-xl text-primary-200 mx-auto max-w-2xl"
+         data-aos="fade-up" 
+         data-aos-duration="1000"
+         data-aos-delay="200">
+        Whether you need a repair estimate or have questions about our services, our team is here to help. 
+        Reach out to us today!
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form Section -->
+<div data-aos="fade-up" 
+     data-aos-duration="1000"
+     data-aos-delay="300">
   <app-contact-form
     [title]="'Contact Us'"
     [description]="'Our expert team is ready to assist you with all your auto body repair needs. Fill out the form and we will get back to you as soon as possible.'"
     [services]="services"
   />
-  <app-footer>
-  
+</div>
+
+<app-footer />

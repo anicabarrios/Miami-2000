@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ButtonComponent } from '../button/button.component';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-service-card',
@@ -16,11 +17,39 @@ export class ServiceCardComponent {
   @Input() description!: string;
   @Input() id!: string;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private viewportScroller: ViewportScroller
+  ) {}
+
+  getServiceId(): string {
+    return this.title.toLowerCase().replace(/\s+/g, '-');
+  }
 
   onLearnMore() {
-    // Convert title to URL-friendly format
-    const serviceId = this.title.toLowerCase().replace(/\s+/g, '-');
-    this.router.navigate(['/services', serviceId]);
+    const serviceId = this.getServiceId();
+    
+    this.router.navigate(['/services']).then(() => {
+      setTimeout(() => {
+        const element = document.getElementById(serviceId);
+        if (element) {
+          const headerHeight = 80;
+          const elementRect = element.getBoundingClientRect();
+          const absoluteElementTop = elementRect.top + window.scrollY;
+          const scrollPosition = absoluteElementTop - headerHeight;
+
+          window.scrollTo({
+            top: scrollPosition,
+            behavior: 'smooth'
+          });
+
+          // Add highlight effect
+          element.classList.add('highlight-service');
+          setTimeout(() => {
+            element.classList.remove('highlight-service');
+          }, 2000);
+        }
+      }, 100);
+    });
   }
 }

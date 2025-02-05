@@ -1,78 +1,106 @@
-<div class="min-h-screen bg-white">
-    <!-- Header -->
-    <app-header />
-  
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-16 bg-primary-900 overflow-hidden">
-      <!-- Background Effects -->
-      <div class="absolute inset-0">
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/95 via-primary-800/95 to-primary-900/95"></div>
-        <div class="absolute inset-0" style="background-image: url('/assets/images/pattern-grid.png'); background-size: 30px 30px; opacity: 0.05;"></div>
-        <div class="absolute -top-24 right-0 w-96 h-96 bg-secondary-500/10 rounded-full filter blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary-500/10 rounded-full filter blur-3xl"></div>
-      </div>
-  
-      <!-- Content -->
-      <div class="container-custom relative z-10">
-        <div class="max-w-3xl mx-auto text-center">
-          <!-- Section Label -->
-          <div class="flex items-center justify-center gap-2 mb-6">
-            <div class="h-px w-8 bg-secondary-500"></div>
-            <span class="text-secondary-500 font-medium uppercase tracking-wider text-sm">Our Work</span>
-            <div class="h-px w-8 bg-secondary-500"></div>
-          </div>
-  
-          <!-- Title -->
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-           Gallery
-          </h1>
-  
-          <!-- Description -->
-          <p class="text-lg md:text-xl text-primary-200 mx-auto max-w-2xl">
-            Explore our portfolio of exceptional auto body repairs, restorations, and custom work. 
-            Each project showcases our commitment to excellence and attention to detail.
-          </p>
-        </div>
-      </div>
-    </section>
-  
-    <!-- Categories Section -->
-    <section class="py-8 bg-accent-50 border-b border-accent-200">
-      <div class="container-custom">
-        <div class="flex flex-wrap items-center justify-center gap-4">
-          @for (category of categories; track category) {
-            <button 
-              (click)="filterByCategory(category)"
-              [class.bg-secondary-500]="selectedCategory === category"
-              [class.text-white]="selectedCategory === category"
-              [class.bg-white]="selectedCategory !== category"
-              [class.text-primary-700]="selectedCategory !== category"
-              class="px-6 py-2 rounded-full font-medium transition-all duration-300 hover:shadow-md">
-              {{ category }}
-            </button>
-          }
-        </div>
-      </div>
-    </section>
-  
-    <!-- Gallery Grid -->
-    <app-gallery-grid
-      [images]="filteredGalleryImages"
-      [showHeader]="false"
-      [showViewAllButton]="false"
-      (imageClick)="openModal($event)"
-    />
-  
-    <!-- Image Modal -->
-    <app-image-modal
-      [isOpen]="isModalOpen"
-      [image]="selectedImage"
-      [hasNext]="hasNextImage"
-      [hasPrevious]="hasPreviousImage"
-      (closeModal)="closeModal()"
-      (navigateImage)="navigateImage($event)"
-    />
-  
-    <!-- Footer -->
-    <app-footer />
+<!-- Hero Section -->
+<section class="relative py-32 bg-primary-900 overflow-hidden">
+  <app-header />
+
+  <!-- Background Effects -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-900/95 via-primary-800/95 to-primary-900/95"></div>
+    <div class="absolute inset-0 opacity-[0.02]"
+      style="background-image: url('/assets/images/pattern-grid.png'); background-size: 30px 30px;"></div>
+    <div class="absolute -top-24 right-0 w-96 h-96 bg-secondary-500/10 rounded-full filter blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary-500/10 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
   </div>
+
+  <!-- Content -->
+  <div class="container-custom relative z-10">
+    <div class="max-w-3xl mx-auto text-center">
+      <!-- Section Label -->
+      <div class="flex items-center justify-center gap-2 mb-6" 
+           data-aos="fade-up" 
+           data-aos-duration="1000">
+        <div class="h-px w-8 bg-secondary-500"></div>
+        <span class="text-secondary-500 font-medium uppercase tracking-wider text-sm">Our Work</span>
+        <div class="h-px w-8 bg-secondary-500"></div>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
+          data-aos="fade-up" 
+          data-aos-duration="1000"
+          data-aos-delay="100">
+        <span class="inline-block">Gallery</span>
+      </h1>
+
+      <!-- Description -->
+      <p class="text-lg md:text-xl text-primary-200 mx-auto max-w-2xl"
+         data-aos="fade-up" 
+         data-aos-duration="1000"
+         data-aos-delay="200">
+        Take a look at some of our finest work. From minor repairs to complete restorations, 
+        we take pride in every project we complete.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Categories Section -->
+<section class="py-8 bg-accent-50 border-b border-accent-200">
+  <div class="container-custom">
+    <div class="flex flex-wrap items-center justify-center gap-4" 
+         data-aos="fade-up" 
+         data-aos-duration="800">
+      @for (category of categories; track category; let i = $index) {
+        <div class="transform hover:-translate-y-1 transition-all duration-300"
+             data-aos="fade-up"
+             [attr.data-aos-delay]="i * 50">
+          <button 
+            (click)="filterByCategory(category)" 
+            [class.bg-secondary-500]="selectedCategory === category"
+            [class.text-white]="selectedCategory === category" 
+            [class.bg-white]="selectedCategory !== category"
+            [class.text-primary-700]="selectedCategory !== category"
+            class="group px-6 py-2 rounded-full font-medium transition-all duration-300 
+                   hover:shadow-lg relative overflow-hidden">
+            <!-- Button Background Animation -->
+            <div class="absolute inset-0 bg-secondary-500 transform scale-x-0 group-hover:scale-x-100 
+                        transition-transform duration-300 origin-left opacity-10"></div>
+            <!-- Button Text -->
+            <span class="relative z-10">{{ category }}</span>
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Grid -->
+<section class="relative py-24 bg-white overflow-hidden">
+  <!-- Decorative Background -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-tr from-primary-900/[0.02] via-transparent to-secondary-500/[0.02]"></div>
+    <div class="absolute -top-48 right-0 w-96 h-96 bg-secondary-500/[0.03] rounded-full filter blur-3xl animate-[float_15s_ease-in-out_infinite]"></div>
+    <div class="absolute inset-0" 
+         style="background-image: radial-gradient(circle at 30% 30%, rgba(227,76,38,0.02) 0%, transparent 60%);"></div>
+  </div>
+
+  <!-- Gallery Content -->
+  <div class="relative z-10">
+    <app-gallery-grid 
+      [images]="filteredGalleryImages" 
+      [showHeader]="false" 
+      [showViewAllButton]="false"
+      (imageClick)="openModal($event)" />
+  </div>
+</section>
+
+<!-- Image Modal -->
+<app-image-modal 
+  [isOpen]="isModalOpen" 
+  [image]="selectedImage" 
+  [hasNext]="hasNextImage"
+  [hasPrevious]="hasPreviousImage" 
+  (closeModal)="closeModal()" 
+  (navigateImage)="navigateImage($event)" />
+
+<!-- Footer -->
+<app-footer />

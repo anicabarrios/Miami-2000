@@ -1,10 +1,11 @@
+// src/app/app.routes.ts
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent),
-    title: 'Miami 2000  Body Shop'
+    title: 'Miami 2000 Body Shop'
   },
   {
     path: 'about',
@@ -13,18 +14,8 @@ export const routes: Routes = [
   },
   {
     path: 'services',
-    children: [
-      {
-        path: '',
-        loadComponent: () => import('./pages/services/services.component').then(m => m.ServicesComponent),
-        title: 'Our Services - Miami 2000 Body Shop'
-      },
-      {
-        path: ':id',
-        loadComponent: () => import('./pages/service-detail/service-detail.component').then(m => m.ServiceDetailComponent),
-        title: 'Service Details - Miami 2000 Body Shop'
-      }
-    ]
+    loadComponent: () => import('./pages/services/services.component').then(m => m.ServicesComponent),
+    title: 'Our Services - Miami 2000 Body Shop'
   },
   {
     path: 'gallery',
@@ -36,9 +27,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/contact/contact.component').then(m => m.ContactComponent),
     title: 'Contact Us - Miami 2000 Body Shop'
   },
-
+  {
+    path: '404',
+    loadComponent: () => import('./pages/not-found/not-found.component').then(m => m.NotFoundComponent),
+    title: '404 - Page Not Found'
+  },
   {
     path: '**',
-    redirectTo: '404'
+    redirectTo: '404',
+    pathMatch: 'full'
   }
 ];

@@ -170,3 +170,17 @@
       animation: none;
     }
   }
+  @keyframes highlightService {
+    0% {
+      background-color: rgba(227, 76, 38, 0.1);
+      transform: scale(1.01);
+    }
+    100% {
+      background-color: transparent;
+      transform: scale(1);
+    }
+  }
+  
+  .highlight-service {
+    animation: highlightService 2s ease-out;
+  }

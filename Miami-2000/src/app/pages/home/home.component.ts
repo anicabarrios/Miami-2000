@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../../features/components/header/header.component';
 import { HeroComponent } from '../../features/components/hero/hero.component';
@@ -9,7 +9,9 @@ import { FooterComponent } from '../../features/components/footer/footer.compone
 import { ContactFormComponent } from '../../shared/components/contact-form/contact-form.component';
 import { GalleryGridComponent } from '../../shared/components/gallery-grid/gallery-grid.component'; 
 import { InsuranceBannerComponent } from '../../features/components/insurance-banner/insurance-banner.component';
-interface Service {
+import AOS from 'aos';
+
+interface ServiceCard {
   id: string;
   title: string;
   description: string;
@@ -50,11 +52,12 @@ interface Testimonial {
     GalleryGridComponent
   ],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+ 
 })
 
-export class HomeComponent {
-  services: Service[] = [
+export class HomeComponent implements OnInit {
+  services: ServiceCard[] = [
     {
       id: 'collision-repair',
       title: 'Insurance-Approved Collision Repair',
@@ -92,7 +95,21 @@ export class HomeComponent {
       imageUrl: '/assets/services/restoration.jpg'
     }
   ];
-
+  formServices = [
+    { id: 1, title: 'Collision Repair' },
+    { id: 2, title: 'Paint Services' },
+    { id: 3, title: 'Dent Removal' },
+    { id: 4, title: 'Frame Repair' },
+    { id: 5, title: 'Glass Replacement' },
+    { id: 6, title: 'Auto Restoration' },
+    { id: 7, title: 'Custom Paint Work' },
+    { id: 8, title: 'Classic Car Restoration' },
+    { id: 9, title: 'Custom Body Work' },
+    { id: 10, title: 'Frame & Structural Repair' },
+    { id: 11, title: 'Interior Detailing' },
+    { id: 12, title: 'Paint Protection' },
+    { id: 13, title: 'Window Tinting' }
+  ];
   features = [
     {
       id: 1,
@@ -183,7 +200,83 @@ export class HomeComponent {
     }
   ];
 
- 
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-out-cubic',
+        once: false, 
+        mirror: true, 
+        
+        // Performance Optimizations
+        throttleDelay: 50,
+        offset: 100, 
+        
+        // Mobile Optimizations
+        disable: false, 
+        startEvent: 'DOMContentLoaded',
+        
+        // Advanced Settings
+        anchorPlacement: 'top-bottom',
+        useClassNames: true,
+        disableMutationObserver: false,
+        
+      
+      });
+
+      // Refresh AOS on dynamic content changes
+      this.setupAOSRefresh();
+    }
+  }
+
+  private setupAOSRefresh() {
+    // Refresh on initial load
+    window.addEventListener('load', () => {
+      AOS.refresh();
+    });
+
+    // Refresh on dynamic content changes
+    const observer = new MutationObserver(() => {
+      AOS.refresh();
+    });
+
+    // Observe the entire document for changes
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    // Refresh on window resize
+    let resizeTimeout: any;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        AOS.refresh();
+      }, 250);
+    });
+  }
+
+  // Custom animation helper for dynamic animations
+  getAOSAnimation(index: number): string {
+    const animations = [
+      'fade-up',
+      'fade-down',
+      'fade-right',
+      'fade-left',
+      'zoom-in',
+      'zoom-in-up'
+    ];
+    return animations[index % animations.length];
+  }
+
+  // Get animation delay based on index
+  getAOSDelay(index: number): number {
+    return index * 100; // 100ms delay between each item
+  }
 
   // Form handling methods
   onSubmit() {

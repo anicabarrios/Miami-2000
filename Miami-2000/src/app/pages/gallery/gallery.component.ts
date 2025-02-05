@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { GalleryGridComponent } from '../../shared/components/gallery-grid/gallery-grid.component';
 import { HeaderComponent } from '../../features/components/header/header.component';
 import { FooterComponent } from '../../features/components/footer/footer.component';
 import { ImageModalComponent } from '../../features/components/image-modal/image-modal.component';
+import AOS from 'aos';
 
 export interface GalleryImage {
   id: number;
@@ -25,7 +26,7 @@ export interface GalleryImage {
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.css']
 })
-export class GalleryComponent {
+export class GalleryComponent implements OnInit {
   selectedCategory: string = 'All';
   isModalOpen = false;
   selectedImage: GalleryImage | null = null;
@@ -115,6 +116,70 @@ export class GalleryComponent {
     }
   ];
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      AOS.init({
+        duration: 1000,
+        easing: 'ease-out-cubic',
+        once: false,
+        mirror: true,
+        
+        // Performance Optimizations
+        throttleDelay: 50,
+        offset: 100,
+        
+        // Mobile Optimizations
+        disable: false,
+        startEvent: 'DOMContentLoaded',
+        
+        // Advanced Settings
+        anchorPlacement: 'top-bottom',
+        useClassNames: true,
+        disableMutationObserver: false,
+      });
+
+      this.setupAOSRefresh();
+    }
+  }
+
+  private setupAOSRefresh() {
+    // Refresh on initial load
+    window.addEventListener('load', () => {
+      AOS.refresh();
+    });
+
+    // Refresh on dynamic content changes
+    const observer = new MutationObserver(() => {
+      AOS.refresh();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    // Refresh on window resize
+    let resizeTimeout: any;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        AOS.refresh();
+      }, 250);
+    });
+  }
+
+  // Animation helper methods
+  getAOSAnimation(index: number): string {
+    const animations = ['fade-up', 'fade-down', 'fade-right', 'fade-left'];
+    return animations[index % animations.length];
+  }
+
+  getAOSDelay(index: number): number {
+    return index * 100; // 100ms delay between each item
+  }
+
   get filteredGalleryImages() {
     if (this.selectedCategory === 'All') {
       return this.galleryImages;
@@ -122,17 +187,14 @@ export class GalleryComponent {
     return this.galleryImages.filter(image => image.category === this.selectedCategory);
   }
 
-  get hasNextImage() {
-    return this.selectedImageIndex < this.filteredGalleryImages.length - 1;
-  }
-
-  get hasPreviousImage() {
-    return this.selectedImageIndex > 0;
-  }
-
   filterByCategory(category: string) {
     this.selectedCategory = category;
     this.closeModal();
+    
+    // Refresh AOS animations after category change
+    setTimeout(() => {
+      AOS.refresh();
+    }, 100);
   }
 
   openModal(image: GalleryImage) {
@@ -158,5 +220,13 @@ export class GalleryComponent {
       this.selectedImageIndex = newIndex;
       this.selectedImage = this.filteredGalleryImages[newIndex];
     }
+  }
+
+  get hasNextImage() {
+    return this.selectedImageIndex < this.filteredGalleryImages.length - 1;
+  }
+
+  get hasPreviousImage() {
+    return this.selectedImageIndex > 0;
   }
 }

@@ -1,6 +1,7 @@
 import { Component, HostListener, PLATFORM_ID, Inject } from "@angular/core";
 import { isPlatformBrowser } from '@angular/common';
 import { ButtonComponent } from "../../../shared/components/button/button.component";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -13,8 +14,18 @@ export class HeaderComponent {
   isScrolled = false;
   isMenuOpen = false;
   
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router) {}
 
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  navigateToQuote() {
+    this.router.navigate(['/contact']);
+    if (this.isMenuOpen) {
+      this.isMenuOpen = false;
+    }
+  }
   @HostListener('window:scroll', [])
   onWindowScroll() {
     if (isPlatformBrowser(this.platformId)) {
@@ -22,10 +33,7 @@ export class HeaderComponent {
     }
   }
   
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
-
+  
   @HostListener('window:resize', [])
   onResize() {
     if (isPlatformBrowser(this.platformId) && window.innerWidth >= 768) {
