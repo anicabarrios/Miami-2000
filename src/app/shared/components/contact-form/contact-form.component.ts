@@ -1,5 +1,3 @@
-// src/app/shared/components/contact-form/contact-form.component.ts
-
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -37,7 +35,7 @@ export class ContactFormComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (params['service']) {
         const serviceTitle = this.services.find(s => 
-          s.title.toLowerCase().replace(/\s+/g, '-') === params['service']
+          s.title.toLowerCase().replace(/\\s+/g, '-') === params['service']
         )?.title;
         if (serviceTitle) {
           this.contactForm.patchValue({ service: serviceTitle });
@@ -105,11 +103,18 @@ export class ContactFormComponent implements OnInit {
     if (!control || !control.errors) return '';
 
     const errors = control.errors;
-    if (errors['required']) return `${fieldName} is required`;
+    if (errors['required']) return `${this.formatFieldName(fieldName)} is required`;
     if (errors['email']) return 'Please enter a valid email address';
-    if (errors['minlength']) return `${fieldName} must be at least ${errors['minlength'].requiredLength} characters`;
+    if (errors['minlength']) return `${this.formatFieldName(fieldName)} must be at least ${errors['minlength'].requiredLength} characters`;
     if (errors['pattern']) return 'Please enter a valid phone number';
     
     return 'Invalid input';
+  }
+
+  private formatFieldName(fieldName: string): string {
+    // Convert camelCase to Title Case (e.g., firstName to First Name)
+    return fieldName
+      .replace(/([A-Z])/g, ' $1')
+      .replace(/^./, str => str.toUpperCase());
   }
 }

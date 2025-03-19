@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
+import { Observable, from } from '../../../../node_modules/rxjs/';
 import { catchError, map } from 'rxjs/operators';
 import emailjs from '@emailjs/browser';
 
@@ -32,6 +32,8 @@ export class EmailService {
   }
 
   sendEmail(formData: ContactFormData): Observable<EmailResponse> {
+    console.log('Sending email with data:', formData);
+    
     const templateParams = {
       to_name: 'Miami 2000 Body Shop',
       from_name: `${formData.firstName} ${formData.lastName}`,
@@ -56,15 +58,5 @@ export class EmailService {
         throw new Error('Failed to send email. Please try again later.');
       })
     );
-  }
-
-  validateEmail(email: string): boolean {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
-
-  validatePhone(phone: string): boolean {
-    const phoneRegex = /^\+?[\d\s-()]{10,}$/;
-    return phoneRegex.test(phone);
   }
 }
