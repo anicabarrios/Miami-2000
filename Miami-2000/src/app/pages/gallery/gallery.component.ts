@@ -40,79 +40,42 @@ export class GalleryComponent implements OnInit {
     'Custom Projects',
     'Before & After'
   ];
-
-  galleryImages: GalleryImage[] = [
+  galleryImages = [
     {
       id: 1,
-      url: 'images/image.jpg',
-      title: 'Front-End Collision Repair',
-      category: 'Collision Repair',
+      url: '/images/classic.webp',
+      title: 'Classic Restoration',
+      category: 'Full Restoration'
     },
     {
       id: 2,
-      url: 'images/image1.jpg',
-      title: 'Custom Pearl Paint Job',
-      category: 'Paint Work',
+      url: '/images/collision1.webp',
+      title: 'Collision Repair',
+      category: 'Accident Recovery'
     },
     {
       id: 3,
-      url: '/assets/images/gallery/restoration-1.jpg',
-      title: 'Classic Car Restoration',
-      category: 'Restoration',
+      url: '/images/paint2.webp',
+      title: 'Custom Paint Job',
+      category: 'Paint Services'
     },
     {
       id: 4,
-      url: '/assets/images/gallery/custom-1.jpg',
-      title: 'Custom Body Kit Installation',
-      category: 'Custom Projects',
+      url: '/images/restore.webp',
+      title: 'Luxury Car Detail',
+      category: 'Detail Work'
     },
     {
       id: 5,
-      url: '/assets/images/gallery/before-after-1.jpg',
-      title: 'Complete Vehicle Transformation',
-      category: 'Before & After',
+      url: '/images/frame.webp',
+      title: 'Frame Repair',
+      category: 'Structural Work'
     },
     {
       id: 6,
-      url: '/assets/images/gallery/collision-repair-2.jpg',
-      title: 'Side Impact Repair',
-      category: 'Collision Repair',
-    },
-    {
-      id: 7,
-      url: '/assets/images/gallery/paint-2.jpg',
-      title: 'Metallic Finish',
-      category: 'Paint Work',
-    },
-    {
-      id: 8,
-      url: '/assets/images/gallery/restoration-2.jpg',
-      title: 'Vintage Restoration Project',
-      category: 'Restoration',
-    },
-    {
-      id: 9,
-      url: '/assets/images/gallery/custom-2.jpg',
-      title: 'Custom Hood Design',
-      category: 'Custom Projects',
-    },
-    {
-      id: 10,
-      url: '/assets/images/gallery/before-after-2.jpg',
-      title: 'Accident Recovery',
-      category: 'Before & After',
-    },
-    {
-      id: 11,
-      url: '/assets/images/gallery/paint-3.jpg',
-      title: 'Candy Paint Application',
-      category: 'Paint Work',
-    },
-    {
-      id: 12,
-      url: '/assets/images/gallery/restoration-3.jpg',
-      title: 'Museum Quality Restoration',
-      category: 'Restoration',
+      url: '/images/vintage.webp',
+      title: 'Vintage Car Restoration',
+      category: 'Full Restoration'
     }
   ];
 

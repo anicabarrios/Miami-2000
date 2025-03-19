@@ -27,19 +27,19 @@ export class AboutComponent implements OnInit {
     {
       name: 'Maclovio Barrios',
       role: 'Master Painter',
-      image: '/assets/images/team/maclovio.jpg',
+      image: '/images/boss.webp',
       description: 'Founder and expert painter with decades of experience in auto body repair and restoration, establishing Miami 2000 with a vision for excellence.'
     },
     {
       name: 'Elida Barrios',
       role: 'Insurance Specialist',
-      image: '/assets/images/team/elida.jpg',
+      image: '/images/bossl.webp',
       description: 'Co-founder of Miami 2000, specializing in insurance claims and customer relations, ensuring seamless repair processes for our clients.'
     },
     {
       name: 'Christian Barrios',
       role: 'Master Painter',
-      image: '/assets/images/team/christian.jpg',
+      image: '/images/worker.webp',
       description: 'Skilled painter continuing the family legacy of excellence in auto body repair and restoration.'
     }
   ];

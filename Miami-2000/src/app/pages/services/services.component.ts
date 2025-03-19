@@ -39,7 +39,7 @@ export class ServicesComponent implements OnInit {
         'Post-repair inspection',
         'Lifetime warranty'
       ],
-      image: '/assets/images/services/collision-repair.jpg',
+      image: '/images/collision.webp',
       price: 'Starting at $1,500',
       estimatedTime: '3-5 days',
       category: 'Collision'
@@ -55,7 +55,7 @@ export class ServicesComponent implements OnInit {
         'Paint correction',
         'Spot repairs available'
       ],
-      image: '/assets/images/services/paint-services.jpg',
+      image: '/images/paint.webp',
       price: 'Starting at $800',
       estimatedTime: '2-4 days',
       category: 'Paint'
@@ -71,7 +71,7 @@ export class ServicesComponent implements OnInit {
         'Minor collision repair',
         'Same-day service available'
       ],
-      image: '/assets/images/services/dent-removal.jpg',
+      image: '/images/dent1.webp',
       price: 'Starting at $200',
       estimatedTime: '1-2 days',
       category: 'Repair'
@@ -87,7 +87,7 @@ export class ServicesComponent implements OnInit {
         'Period-correct paint',
         'Documentation and photography'
       ],
-      image: '/assets/images/services/classic-restoration.jpg',
+      image: '/images/classic.webp',
       price: 'Starting at $5,000',
       estimatedTime: '2-6 weeks',
       category: 'Restoration'
@@ -103,7 +103,7 @@ export class ServicesComponent implements OnInit {
         'Performance upgrades',
         'Show car preparation'
       ],
-      image: '/assets/images/services/custom-work.jpg',
+      image: '/images/custom.webp',
       price: 'Starting at $2,500',
       estimatedTime: '1-3 weeks',
       category: 'Custom'
@@ -119,7 +119,7 @@ export class ServicesComponent implements OnInit {
         'Structural welding',
         'Safety certification'
       ],
-      image: '/assets/images/services/frame-repair.jpg',
+      image: '/images/frame.webp',
       price: 'Starting at $1,800',
       estimatedTime: '4-7 days',
       category: 'Structural'
@@ -135,7 +135,7 @@ export class ServicesComponent implements OnInit {
         'Calibration services',
         'Mobile service available'
       ],
-      image: '/assets/images/services/glass-services.jpg',
+      image: '/images/glass.webp',
       price: 'Starting at $300',
       estimatedTime: '1-2 days',
       category: 'Glass'

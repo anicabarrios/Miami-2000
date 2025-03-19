@@ -62,37 +62,37 @@ export class HomeComponent implements OnInit {
       id: 'collision-repair',
       title: 'Insurance-Approved Collision Repair',
       description: 'Expert repair services for vehicles involved in accidents, working with all major insurance providers. We handle your claims process seamlessly.',
-      imageUrl: '/assets/services/collision-repair.jpg'
+      imageUrl: '/images/collision1.webp'
     },
     {
       id: 'paint-services',
       title: 'Paint Services',
       description: 'Professional auto painting services including custom colors and perfect color matching.',
-      imageUrl: '/assets/services/paint-services.jpg'
+      imageUrl: '/images/paintcustom.webp'
     },
     {
       id: 'dent-removal',
       title: 'Dent Removal',
       description: 'Paintless dent repair and traditional dent removal services for all vehicle types.',
-      imageUrl: '/assets/services/dent-removal.jpg'
+      imageUrl: '/images/dent.webp'
     },
     {
       id: 'frame-repair',
       title: 'Frame Repair',
       description: 'Precise frame straightening and structural repair services using modern equipment.',
-      imageUrl: '/assets/services/frame-repair.jpg'
+      imageUrl: '/images/frame.webp'
     },
     {
       id: 'glass-replacement',
       title: 'Glass Replacement',
       description: 'Windshield and auto glass replacement services with quality materials.',
-      imageUrl: '/assets/services/glass-replacement.jpg'
+      imageUrl: 'images/glass1.webp'
     },
     {
       id: 'auto-restoration',
       title: 'Auto Restoration',
       description: 'Classic car restoration and custom vehicle modification services.',
-      imageUrl: '/assets/services/restoration.jpg'
+      imageUrl: 'images/classic1.webp'
     }
   ];
   formServices = [
@@ -140,37 +140,37 @@ export class HomeComponent implements OnInit {
   galleryImages = [
     {
       id: 1,
-      url: '/assets/gallery/project1.jpg',
-      title: 'Classic Mustang Restoration',
+      url: '/images/classic.webp',
+      title: 'Classic Restoration',
       category: 'Full Restoration'
     },
     {
       id: 2,
-      url: '/assets/gallery/project2.jpg',
+      url: '/images/collision1.webp',
       title: 'Collision Repair',
       category: 'Accident Recovery'
     },
     {
       id: 3,
-      url: '/assets/gallery/project3.jpg',
+      url: '/images/paint2.webp',
       title: 'Custom Paint Job',
       category: 'Paint Services'
     },
     {
       id: 4,
-      url: '/assets/gallery/project4.jpg',
+      url: '/images/restore.webp',
       title: 'Luxury Car Detail',
       category: 'Detail Work'
     },
     {
       id: 5,
-      url: '/assets/gallery/project5.jpg',
+      url: '/images/frame.webp',
       title: 'Frame Repair',
       category: 'Structural Work'
     },
     {
       id: 6,
-      url: '/assets/gallery/project6.jpg',
+      url: '/images/vintage.webp',
       title: 'Vintage Car Restoration',
       category: 'Full Restoration'
     }
