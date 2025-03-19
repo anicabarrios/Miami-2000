@@ -1,0 +1,20 @@
+# netlify.toml
+[build]
+  command = "npm run build"
+  publish = "dist/miami-2000/browser"
+  functions = "netlify/functions"
+
+# Adjust SSR to use Netlify's functions
+[[plugins]]
+  package = "@netlify/plugin-angular-universal"
+
+[dev]
+  command = "npm run start"
+  port = 4200
+  targetPort = 4200
+
+# Add redirect for client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
