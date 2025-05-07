@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 
 interface InsuranceProvider {
   name: string;
-  logoUrl: string;
-  altText: string;
+
 }
 
 @Component({
@@ -18,23 +17,15 @@ export class InsuranceBannerComponent {
   insuranceProviders: InsuranceProvider[] = [
     {
       name: 'Geico',
-      logoUrl: '/assets/insurance/geico.png',
-      altText: 'Geico Insurance'
     },
     {
       name: 'State Farm',
-      logoUrl: '/assets/insurance/state-farm.png',
-      altText: 'State Farm Insurance'
     },
     {
       name: 'Progressive',
-      logoUrl: '/assets/insurance/progressive.png',
-      altText: 'Progressive Insurance'
     },
     {
       name: 'Allstate',
-      logoUrl: '/assets/insurance/allstate.png',
-      altText: 'Allstate Insurance'
     }
   ];
 
